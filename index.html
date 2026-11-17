@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROJETO INTEGRADOR | Absorção, Reflexão e Transmissão da Radiação Solar – CEP</title>
+  <meta name="description" content="Site educativo completo sobre óptica, interação da radiação solar com materiais e aplicação prática no aquecimento sustentável da piscina do Colégio Estadual do Paraná.">
+  <meta name="keywords" content="radiação solar, absorção, reflexão, transmissão, óptica, piscina CEP, sustentabilidade, efeito estufa">
+  
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=OpenDyslexic&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS será colocado em arquivo separado depois. Por enquanto está embutido -->
+  <style>
+    /* ===== VARIÁVEIS E RESET ===== */
+    :root {
+      --azul-profundo: #023047;
+      --azul-agua: #0077b6;
+      --azul-claro: #00b4d8;
+      --azul-muito-claro: #90e0ef;
+      --amarelo-sol: #ffb703;
+      --laranja-sol: #fb8500;
+      --verde-agua: #2a9d8f;
+      --fundo: #f0f9ff;
+      --fundo-card: #ffffff;
+      --texto: #023047;
+      --texto-suave: #4a6fa5;
+      --branco: #ffffff;
+      --sombra: 0 10px 30px rgba(0, 119, 182, 0.12);
+      --sombra-forte: 0 15px 40px rgba(0, 119, 182, 0.2);
+      --radius: 16px;
+      --transicao: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--fundo);
+      color: var(--texto);
+      line-height: 1.7;
+      font-size: 16px;
+      transition: var(--transicao);
+    }
+
+    body.alto-contraste {
+      --fundo: #000000;
+      --fundo-card: #111111;
+      --texto: #ffff00;
+      --texto-suave: #ffff99;
+      --azul-agua: #00ffff;
+      --azul-claro: #00ffff;
+      --amarelo-sol: #ffff00;
+      background: #000;
+      color: #ffff00;
+    }
+
+    body.fonte-dislexia {
+      font-family: 'OpenDyslexic', sans-serif;
+      letter-spacing: 0.05em;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: var(--azul-agua);
+      text-decoration: none;
+      transition: var(--transicao);
+    }
+
+    a:hover {
+      color: var(--laranja-sol);
+    }
+
+    /* ===== SKIP LINK ===== */
+    .skip-link {
+      position: absolute;
+      top: -60px;
+      left: 20px;
+      background: var(--amarelo-sol);
+      color: #000;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      z-index: 9999;
+      transition: top 0.3s;
+    }
+
+    .skip-link:focus {
+      top: 20px;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: linear-gradient(135deg, var(--azul-profundo), var(--azul-agua));
+      color: white;
+      padding: 0.8rem 5%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-icon {
+      background: var(--amarelo-sol);
+      color: var(--azul-profundo);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 30px;
+      transition: var(--transicao);
+    }
+
+    nav a:hover,
+    nav a:focus {
+      background: rgba(255,255,255,0.2);
+      outline: 3px solid var(--amarelo-sol);
+    }
+
+    .acess-btns {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-acess {
+      background: rgba(255,255,255,0.15);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.4rem 0.75rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: var(--transicao);
+    }
+
+    .btn-acess:hover,
+    .btn-acess:focus {
+      background: var(--amarelo-sol);
+      color: var(--azul-profundo);
+      outline: none;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, rgba(2,48,71,0.85), rgba(0,119,182,0.75)),
+                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 600"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%2300b4d8"/><stop offset="100%" stop-color="%230077b6"/></linearGradient></defs><rect fill="url(%23g)" width="1440" height="600"/><circle fill="%23ffb703" cx="1100" cy="120" r="90"/><path fill="%23023047" opacity="0.3" d="M0 380 Q360 300 720 380 T1440 380 V600 H0Z"/></svg>');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 6rem 1.5rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,183,3,0.2);
+      border: 1px solid var(--amarelo-sol);
+      color: var(--amarelo-sol);
+      padding: 0.4rem 1.2rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5.5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0 auto 2.2rem;
+      font-weight: 300;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: var(--transicao);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--amarelo-sol);
+      color: var(--azul-profundo);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255,183,3,0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: var(--azul-profundo);
+    }
+
+    /* ===== SEÇÕES GERAIS ===== */
+    section {
+      padding: 5rem 5%;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--azul-profundo);
+      margin-bottom: 0.8rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 4px;
+      background: var(--amarelo-sol);
+      border-radius: 2px;
+    }
+
+    .section-header p {
+      color: var(--texto-suave);
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 1.5rem auto 0;
+    }
+
+    /* ===== CARDS ===== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .card {
+      background: var(--fundo-card);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--sombra);
+      transition: var(--transicao);
+      border-top: 5px solid var(--azul-claro);
+      height: 100%;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--sombra-forte);
+    }
+
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--azul-claro), var(--azul-agua));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 1.3rem;
+      color: white;
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      color: var(--azul-profundo);
+      margin-bottom: 0.8rem;
+    }
+
+    .card p {
+      color: var(--texto-suave);
+      font-size: 0.98rem;
+    }
+
+    /* ===== CIÊNCIA ===== */
+    .ciencia-destaque {
+      background: linear-gradient(135deg, #e0f7fa, #f0f9ff);
+      border-radius: 24px;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      border-left: 6px solid var(--azul-agua);
+    }
+
+    .ciencia-destaque h3 {
+      color: var(--azul-agua);
+      margin-bottom: 1rem;
+    }
+
+    /* ===== PERGUNTAS ===== */
+    .pergunta-card {
+      background: var(--fundo-card);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--sombra);
+      border-left: 6px solid var(--amarelo-sol);
+      transition: var(--transicao);
+    }
+
+    .pergunta-card:hover {
+      transform: translateX(8px);
+    }
+
+    .pergunta-card h3 {
+      color: var(--azul-profundo);
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+    }
+
+    .pergunta-numero {
+      background: var(--amarelo-sol);
+      color: var(--azul-profundo);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* ===== SIMULADOR ===== */
+    .simulador-box {
+      background: var(--fundo-card);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: var(--sombra-forte);
+    }
+
+    .controles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .controle-item label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: var(--azul-profundo);
+    }
+
+    .controle-item input[type="range"] {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      accent-color: var(--azul-agua);
+    }
+
+    .controle-item input[type="color"] {
+      width: 100%;
+      height: 45px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .valor-atual {
+      font-size: 0.9rem;
+      color: var(--azul-agua);
+      font-weight: 600;
+      margin-top: 0.3rem;
+    }
+
+    .canvas-wrapper {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    canvas {
+      border: 4px solid var(--azul-agua);
+      border-radius: 16px;
+      background: #e0f7fa;
+      max-width: 100%;
+      box-shadow: var(--sombra);
+    }
+
+    .resultado-box {
+      text-align: center;
+      background: linear-gradient(135deg, var(--azul-agua), var(--azul-claro));
+      color: white;
+      padding: 1.5rem;
+      border-radius: 16px;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .resultado-box strong {
+      font-size: 1.8rem;
+      display: block;
+      margin-top: 0.3rem;
+    }
+
+    /* ===== COMPARAÇÃO ===== */
+    .comparativo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .superficie-card {
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: var(--sombra);
+    }
+
+    .superficie-card.escura {
+      background: linear-gradient(145deg, #1a1a2e, #16213e);
+    }
+
+    .superficie-card.clara {
+      background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+      color: #333;
+      border: 2px solid #dee2e6;
+    }
+
+    .superficie-card.transparente {
+      background: linear-gradient(145deg, #a0e7e5, #b4f8c8);
+      color: var(--azul-profundo);
+    }
+
+    .superficie-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .superficie-card p {
+      position: relative;
+      z-index: 2;
+      font-size: 0.95rem;
+    }
+
+    .raio-animado {
+      position: absolute;
+      width: 3px;
+      height: 40px;
+      background: var(--amarelo-sol);
+      border-radius: 2px;
+      animation: cair-raio 2.2s infinite linear;
+      opacity: 0.8;
+    }
+
+    @keyframes cair-raio {
+      0% { top: -50px; opacity: 1; }
+      100% { top: 110%; opacity: 0; }
+    }
+
+    /* ===== CEP ===== */
+    .cep-section {
+      background: linear-gradient(135deg, var(--azul-profundo), #01579b);
+      color: white;
+      border-radius: 24px;
+      padding: 3rem;
+      margin-top: 2rem;
+    }
+
+    .cep-section h3 {
+      color: var(--amarelo-sol);
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .cep-lista {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+
+    .cep-lista li {
+      padding: 0.8rem 0;
+      padding-left: 2rem;
+      position: relative;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .cep-lista li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--amarelo-sol);
+      font-weight: 800;
+    }
+
+    .impacto-box {
+      background: rgba(255,183,3,0.15);
+      border: 1px solid var(--amarelo-sol);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    /* ===== QUIZ ===== */
+    .quiz-card {
+      background: var(--fundo-card);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--sombra);
+    }
+
+    .quiz-opcoes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .quiz-opcao {
+      background: #f0f9ff;
+      border: 2px solid transparent;
+      padding: 1rem 1.3rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: var(--transicao);
+      text-align: left;
+      font-size: 1rem;
+    }
+
+    .quiz-opcao:hover {
+      border-color: var(--azul-claro);
+      background: #e0f7fa;
+    }
+
+    .quiz-opcao.correta {
+      background: #d4edda;
+      border-color: #28a745;
+    }
+
+    .quiz-opcao.errada {
+      background: #f8d7da;
+      border-color: #dc3545;
+    }
+
+    /* ===== MAPA DO SITE ===== */
+    .mapa-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .mapa-item {
+      background: var(--fundo-card);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--sombra);
+      transition: var(--transicao);
+    }
+
+    .mapa-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .mapa-item h4 {
+      color: var(--azul-agua);
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+    }
+
+    .mapa-item ul {
+      list-style: none;
+    }
+
+    .mapa-item li {
+      margin-bottom: 0.4rem;
+    }
+
+    .mapa-item a {
+      color: var(--texto-suave);
+      font-size: 0.95rem;
+    }
+
+    .mapa-item a:hover {
+      color: var(--azul-agua);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--azul-profundo);
+      color: white;
+      padding: 4rem 5% 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-col h4 {
+      color: var(--amarelo-sol);
+      margin-bottom: 1.2rem;
+      font-size: 1.15rem;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-col a:hover {
+      color: var(--amarelo-sol);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 900px) {
+      nav ul {
+        display: none;
+      }
+      
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    @media (max-width: 600px) {
+      section {
+        padding: 3.5rem 4%;
+      }
+      
+      .hero {
+        padding: 4.5rem 1.2rem 3.5rem;
+      }
+      
+      .cep-section {
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    /* Foco visível */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid var(--amarelo-sol);
+      outline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
+
+  <!-- ========== HEADER ========== -->
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">☀</div>
+        <span>PROJETO INTEGRADOR</span>
+      </div>
+
+      <nav aria-label="Menu principal">
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#ciencia">Ciência</a></li>
+          <li><a href="#perguntas">Perguntas</a></li>
+          <li><a href="#simulador">Simulador</a></li>
+          <li><a href="#comparativo">Comparativo</a></li>
+          <li><a href="#cep">Piscina CEP</a></li>
+          <li><a href="#quiz">Quiz</a></li>
+          <li><a href="#mapa">Mapa</a></li>
+        </ul>
+      </nav>
+
+      <div class="acess-btns">
+        <button class="btn-acess" onclick="toggleContraste()" aria-label="Ativar ou desativar alto contraste">Alto Contraste</button>
+        <button class="btn-acess" onclick="toggleDislexia()" aria-label="Ativar fonte para dislexia">Dislexia</button>
+        <button class="btn-acess" onclick="aumentarFonte()" aria-label="Aumentar tamanho da fonte">A+</button>
+        <button class="btn-acess" onclick="diminuirFonte()" aria-label="Diminuir tamanho da fonte">A-</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo-principal">
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+        <div class="hero-badge">Projeto Educativo • Óptica + Sustentabilidade</div>
+        <h1>Absorção, Reflexão e Transmissão da Radiação Solar</h1>
+        <p>Entenda como a luz do Sol interage com diferentes materiais e descubra como aplicar esses conhecimentos para aquecer de forma sustentável a piscina do Colégio Estadual do Paraná.</p>
+        <div class="hero-btns">
+          <a href="#simulador" class="btn btn-primary">Experimentar o Simulador</a>
+          <a href="#cep" class="btn btn-secondary">Ver Proposta para o CEP</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== INTRODUÇÃO ========== -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <h2>Por que este tema importa?</h2>
+          <p>A radiação solar é a principal fonte de energia do nosso planeta. Compreender como ela é absorvida, refletida ou transmitida permite criar soluções sustentáveis de aquecimento e eficiência energética.</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-icon">🌞</div>
+            <h3>Energia Limpa</h3>
+            <p>O Sol fornece gratuitamente mais energia em uma hora do que a humanidade consome em um ano. Aprender a capturá-la é fundamental para o futuro.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔬</div>
+            <h3>Óptica no Cotidiano</h3>
+            <p>As cores que enxergamos, o calor que sentimos e até o funcionamento de estufas e aquecedores solares são resultados diretos desses fenômenos.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🏫</div>
+            <h3>Aplicação Real no CEP</h3>
+            <p>Este projeto nasce com um objetivo concreto: tornar a piscina do Colégio Estadual do Paraná utilizável o ano todo, com baixo impacto ambiental.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CIÊNCIA ========== -->
+    <section id="ciencia" style="background: #e8f4fd;">
+      <div class="container">
+        <div class="section-header">
+          <h2>Profundidade Científica</h2>
+          <p>Os três caminhos que a radiação solar pode seguir ao encontrar um material</p>
+        </div>
+
+        <div class="ciencia-destaque">
+          <h3>O que é a Radiação Solar?</h3>
+          <p>A radiação solar é energia eletromagnética emitida pelo Sol. Ela chega à Terra principalmente na forma de luz visível (cerca de 44%), infravermelho (cerca de 48%) e uma pequena parte de ultravioleta (cerca de 8%). Quando essa radiação encontra uma superfície, três fenômenos físicos podem ocorrer simultaneamente: <strong>absorção</strong>, <strong>reflexão</strong> e <strong>transmissão</strong>.</p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-icon">🔴</div>
+            <h3>Absorção</h3>
+            <p>A energia dos fótons é transferida para os elétrons e moléculas do material, aumentando sua energia interna. O resultado prático é o aquecimento. Superfícies escuras absorvem a maior parte do espectro visível porque quase nenhum comprimento de onda é refletido.</p>
+            <p style="margin-top:1rem; font-size:0.9rem; color:var(--azul-agua);"><strong>Exemplo:</strong> Asfalto quente no verão, roupas pretas, fundo escuro de piscina.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🔵</div>
+            <h3>Reflexão</h3>
+            <p>Os fótons “batem” na superfície e retornam para o ambiente. A cor que enxergamos em um objeto é exatamente a faixa de comprimentos de onda que foi refletida. Superfícies claras e polidas refletem a maior parte da radiação incidente.</p>
+            <p style="margin-top:1rem; font-size:0.9rem; color:var(--azul-agua);"><strong>Exemplo:</strong> Neve, paredes brancas, espelhos, telhados claros.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">🟢</div>
+            <h3>Transmissão</h3>
+            <p>A radiação atravessa o material. Materiais transparentes (vidro, água limpa, certos plásticos) transmitem bem a luz visível. Porém, muitos deles absorvem o infravermelho, o que gera o famoso efeito estufa.</p>
+            <p style="margin-top:1rem; font-size:0.9rem; color:var(--azul-agua);"><strong>Exemplo:</strong> Janelas, coberturas de estufa, água da piscina, óculos.</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 3rem;">
+          <div class="ciencia-destaque">
+            <h3>Por que superfícies escuras aquecem mais?</h3>
+            <p>A cor de um objeto é determinada pelos comprimentos de onda que ele <em>reflete</em>. Uma superfície preta reflete quase nenhum comprimento de onda do espectro visível — isso significa que ela está absorvendo praticamente todos os fótons que chegam. Esses fótons transferem energia para os átomos do material, fazendo com que vibrem mais intensamente. Maior vibração = maior temperatura.</p>
+            <p style="margin-top:1rem;">Já uma superfície branca reflete a maior parte da luz visível, absorvendo muito menos energia e, portanto, aquecendo bem menos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PERGUNTAS ORIENTADORAS ========== -->
+    <section id="perguntas">
+      <div class="container">
+        <div class="section-header">
+          <h2>Perguntas Orientadoras</h2>
+          <p>Respostas claras e científicas para as questões centrais do projeto</p>
+        </div>
+
+        <div class="pergunta-card">
+          <h3><span class="pergunta-numero">1</span> Por que superfícies escuras tendem a absorver mais luz visível?</h3>
+          <p>Porque a cor preta (ou tons muito escuros) indica que quase nenhum comprimento de onda do espectro visível está sendo refletido. Os fótons são absorvidos pelos elétrons do material. Essa energia absorvida se transforma em energia térmica (movimento molecular), elevando a temperatura da superfície. Quanto mais escura a superfície, maior a absorção e maior o aquecimento.</p>
+        </div>
+
+        <div class="pergunta-card">
+          <h3><span class="pergunta-numero">2</span> Qual é a diferença entre absorver e refletir radiação?</h3>
+          <p><strong>Absorver</strong> significa que a energia da radiação fica no material e se transforma em calor. O material esquenta.</p>
+          <p style="margin-top:0.8rem;"><strong>Refletir</strong> significa que a energia é devolvida ao ambiente. O material não retém essa energia e, portanto, aquece muito menos.</p>
+          <p style="margin-top:0.8rem;">Uma superfície idealmente preta absorve 100% da radiação incidente. Uma superfície idealmente branca reflete quase 100%. Na prática, a maioria dos materiais faz um pouco de cada coisa.</p>
+        </div>
+
+        <div class="pergunta-card">
+          <h3><span class="pergunta-numero">3</span> Uma cobertura transparente pode ajudar a aquecer a piscina?</h3>
+          <p><strong>Sim, e de forma muito eficiente.</strong> Esse é o princípio do efeito estufa aplicado à piscina:</p>
+          <ul style="margin:1rem 0 1rem 1.5rem;">
+            <li>A cobertura transparente (plástico ou vidro) deixa passar a maior parte da luz visível.</li>
+            <li>Essa luz é absorvida pela água e, principalmente, pelo fundo da piscina (preferencialmente escuro).</li>
+            <li>A energia absorvida vira calor (radiação infravermelha).</li>
+            <li>O infravermelho tem mais dificuldade de atravessar a cobertura de volta para o ambiente.</li>
+            <li>Resultado: o calor fica “preso” sob a cobertura e a água esquenta mais rápido e esfria mais devagar.</li>
+          </ul>
+          <p>Além disso, a cobertura reduz drasticamente a perda de calor por evaporação, que é uma das principais formas de resfriamento de piscinas abertas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SIMULADOR ========== -->
+    <section id="simulador" style="background: #f0f9ff;">
+      <div class="container">
+        <div class="section-header">
+          <h2>Simulador Interativo</h2>
+          <p>Altere a cor do fundo da piscina, a transparência da cobertura e a intensidade solar e observe o impacto na temperatura da água</p>
+        </div>
+
+        <div class="simulador-box">
+          <div class="controles-grid">
+            <div class="controle-item">
+              <label for="corSuperficie">Cor do fundo da piscina</label>
+              <input type="color" id="corSuperficie" value="#1a1a2e" oninput="atualizarSimulador()">
+              <div class="valor-atual">Quanto mais escuro, maior a absorção</div>
+            </div>
+
+            <div class="controle-item">
+              <label for="transparencia">Transparência da cobertura</label>
+              <input type="range" id="transparencia" min="0" max="100" value="85" oninput="atualizarSimulador()">
+              <div class="valor-atual"><span id="valorTransp">85</span>%</div>
+            </div>
+
+            <div class="controle-item">
+              <label for="intensidadeSol">Intensidade solar</label>
+              <input type="range" id="intensidadeSol" min="20" max="100" value="75" oninput="atualizarSimulador()">
+              <div class="valor-atual"><span id="valorSol">75</span>% do máximo</div>
+            </div>
+          </div>
+
+          <div class="canvas-wrapper">
+            <canvas id="canvasPiscina" width="560" height="340" aria-label="Simulação visual da piscina com cobertura"></canvas>
+          </div>
+
+          <div class="resultado-box" id="resultadoTemp">
+            Temperatura estimada da água
+            <strong>29,7 °C</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== COMPARAÇÃO VISUAL ========== -->
+    <section id="comparativo">
+      <div class="container">
+        <div class="section-header">
+          <h2>Comparativo Visual</h2>
+          <p>Veja de forma clara a diferença de comportamento entre superfícies escuras, claras e transparentes</p>
+        </div>
+
+        <div class="comparativo-grid">
+          <div class="superficie-card escura">
+            <div class="raio-animado" style="left: 25%; animation-delay: 0s;"></div>
+            <div class="raio-animado" style="left: 45%; animation-delay: 0.6s;"></div>
+            <div class="raio-animado" style="left: 65%; animation-delay: 1.2s;"></div>
+            <div class="raio-animado" style="left: 80%; animation-delay: 0.3s;"></div>
+            <h3>Superfície Escura</h3>
+            <p>Alta absorção<br>Baixa reflexão<br>Aquece muito</p>
+          </div>
+
+          <div class="superficie-card clara">
+            <div class="raio-animado" style="left: 40%; background: #aaa; animation-delay: 0.4s;"></div>
+            <div class="raio-animado" style="left: 60%; background: #aaa; animation-delay: 1s;"></div>
+            <h3>Superfície Clara</h3>
+            <p>Baixa absorção<br>Alta reflexão<br>Aquece pouco</p>
+          </div>
+
+          <div class="superficie-card transparente">
+            <div class="raio-animado" style="left: 30%; animation-delay: 0.2s;"></div>
+            <div class="raio-animado" style="left: 55%; animation-delay: 0.8s;"></div>
+            <div class="raio-animado" style="left: 75%; animation-delay: 1.4s;"></div>
+            <h3>Cobertura Transparente</h3>
+            <p>Transmite luz visível<br>Retém infravermelho<br>Gera efeito estufa</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROPOSTA CEP ========== -->
+    <section id="cep">
+      <div class="container">
+        <div class="section-header">
+          <h2>Aquecimento da Piscina do CEP</h2>
+          <p>Proposta prática, sustentável e de baixo custo para o Colégio Estadual do Paraná</p>
+        </div>
+
+        <div class="cep-section">
+          <h3>Solução baseada em óptica e sustentabilidade</h3>
+          <p>A piscina do CEP pode ser aquecida de forma econômica e ecológica aplicando os princípios científicos estudados neste site. A proposta combina três estratégias simples e eficazes:</p>
+
+          <ul class="cep-lista">
+            <li><strong>Fundo escuro</strong> — Pintura preta ou azul muito escuro no fundo e nas paredes da piscina para maximizar a absorção da radiação solar.</li>
+            <li><strong>Cobertura transparente móvel</strong> — Uso de manta de polietileno ou policarbonato transparente. Durante o dia ela cria efeito estufa; à noite ou em dias de chuva pode ser recolhida automaticamente.</li>
+            <li><strong>Orientação e proteção</strong> — Garantir a melhor exposição solar possível e reduzir a ação de ventos, que aumentam a perda de calor por evaporação e convecção.</li>
+            <li><strong>Automação simples</strong> — Sensor de temperatura da água + motor elétrico de baixo consumo que recolhe a cobertura quando a temperatura atinge o valor desejado ou quando detecta chuva.</li>
+          </ul>
+
+          <div class="impacto-box">
+            <h4 style="color:var(--amarelo-sol); margin-bottom:0.8rem;">Impacto Social e Ambiental</h4>
+            <p>Com essa solução, os alunos do CEP poderão praticar natação durante quase o ano todo, com redução significativa no consumo de energia elétrica ou gás. O projeto também serve como modelo de sustentabilidade e de aplicação prática da ciência para toda a comunidade escolar e para outras escolas da rede pública.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== QUIZ ========== -->
+    <section id="quiz" style="background: #e8f4fd;">
+      <div class="container">
+        <div class="section-header">
+          <h2>Quiz Rápido</h2>
+          <p>Teste seus conhecimentos sobre absorção, reflexão e transmissão</p>
+        </div>
+
+        <div class="quiz-card">
+          <h3>1. Por que uma camiseta preta esquenta mais no sol do que uma branca?</h3>
+          <div class="quiz-opcoes">
+            <button class="quiz-opcao" onclick="responderQuiz(this, true)">Porque absorve quase toda a luz visível e transforma em calor</button>
+            <button class="quiz-opcao" onclick="responderQuiz(this, false)">Porque reflete mais luz e por isso esquenta</button>
+            <button class="quiz-opcao" onclick="responderQuiz(this, false)">Porque o preto é uma cor mais “quente” por natureza</button>
+          </div>
+        </div>
+
+        <div class="quiz-card">
+          <h3>2. O que acontece quando a luz solar atravessa uma cobertura transparente de piscina?</h3>
+          <div class="quiz-opcoes">
+            <button class="quiz-opcao" onclick="responderQuiz(this, false)">Toda a energia é refletida de volta</button>
+            <button class="quiz-opcao" onclick="responderQuiz(this, true)">A luz visível entra e o calor (infravermelho) tem mais dificuldade de sair</button>
+            <button class="quiz-opcao" onclick="responderQuiz(this, false)">A cobertura impede completamente a entrada de qualquer radiação</button>
+          </div>
+        </div>
+
+        <div class="quiz-card">
+          <h3>3. Qual combinação é a mais eficiente para aquecer a piscina do CEP?</h3>
+          <div class="quiz-opcoes">
+            <button class="quiz-opcao" onclick="responderQuiz(this, false)">Fundo branco + sem cobertura</button>
+            <button class="quiz-opcao" onclick="responderQuiz(this, false)">Fundo claro + cobertura opaca</button>
+            <button class="quiz-opcao" onclick="responderQuiz(this, true)">Fundo escuro + cobertura transparente</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MAPA DO SITE ========== -->
+    <section id="mapa">
+      <div class="container">
+        <div class="section-header">
+          <h2>Mapa do Site</h2>
+          <p>Navegação completa de todas as seções</p>
+        </div>
+
+        <div class="mapa-grid">
+          <div class="mapa-item">
+            <h4>Páginas Principais</h4>
+            <ul>
+              <li><a href="#inicio">Início / Hero</a></li>
+              <li><a href="#ciencia">Profundidade Científica</a></li>
+              <li><a href="#perguntas">Perguntas Orientadoras</a></li>
+              <li><a href="#simulador">Simulador Interativo</a></li>
+            </ul>
+          </div>
+          <div class="mapa-item">
+            <h4>Recursos Visuais</h4>
+            <ul>
+              <li><a href="#comparativo">Comparativo Visual</a></li>
+              <li><a href="#quiz">Quiz de Fixação</a></li>
+            </ul>
+          </div>
+          <div class="mapa-item">
+            <h4>Aplicação Prática</h4>
+            <ul>
+              <li><a href="#cep">Proposta Piscina CEP</a></li>
+              <li><a href="#mapa">Mapa do Site</a></li>
+            </ul>
+          </div>
+          <div class="mapa-item">
+            <h4>Acessibilidade</h4>
+            <ul>
+              <li>Alto Contraste</li>
+              <li>Fonte para Dislexia</li>
+              <li>Ajuste de Fonte (A+ / A-)</li>
+              <li>VLibras integrado</li>
+              <li>Navegação por teclado</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Sol + Água</h4>
+        <p>Projeto educativo de Óptica e Sustentabilidade desenvolvido para o Colégio Estadual do Paraná.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <a href="#inicio">Início</a>
+        <a href="#ciencia">Ciência</a>
+        <a href="#simulador">Simulador</a>
+        <a href="#cep">Piscina CEP</a>
+      </div>
+      <div class="footer-col">
+        <h4>Acessibilidade</h4>
+        <p>VLibras • Alto Contraste • Fonte Dislexia • Navegação por teclado • Contraste validado</p>
+      </div>
+      <div class="footer-col">
+        <h4>Objetivo</h4>
+        <p>Promover inclusão digital, conscientização ambiental e aplicação prática da ciência na escola pública.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 • Sol + Água • Colégio Estadual do Paraná • Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+  <!-- VLibras -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+  <!-- JavaScript do site -->
+  <script>
+    // ===== ACESSIBILIDADE =====
+    function toggleContraste() {
+      document.body.classList.toggle('alto-contraste');
+    }
+
+    function toggleDislexia() {
+      document.body.classList.toggle('fonte-dislexia');
+    }
+
+    let tamanhoFonte = 16;
+    function aumentarFonte() {
+      tamanhoFonte = Math.min(tamanhoFonte + 2, 24);
+      document.body.style.fontSize = tamanhoFonte + 'px';
+    }
+    function diminuirFonte() {
+      tamanhoFonte = Math.max(tamanhoFonte - 2, 12);
+      document.body.style.fontSize = tamanhoFonte + 'px';
+    }
+
+    // ===== QUIZ =====
+    function responderQuiz(botao, correta) {
+      const opcoes = botao.parentElement.querySelectorAll('.quiz-opcao');
+      opcoes.forEach(op => {
+        op.disabled = true;
+        op.style.cursor = 'default';
+      });
+
+      if (correta) {
+        botao.classList.add('correta');
+      } else {
+        botao.classList.add('errada');
+        // Destaca a correta
+        opcoes.forEach(op => {
+          if (op.onclick.toString().includes('true')) {
+            op.classList.add('correta');
+          }
+        });
+      }
+    }
+
+    // ===== SIMULADOR =====
+    const canvas = document.getElementById('canvasPiscina');
+    const ctx = canvas.getContext('2d');
+
+    function atualizarSimulador() {
+      const cor = document.getElementById('corSuperficie').value;
+      const transp = parseInt(document.getElementById('transparencia').value);
+      const intensidade = parseInt(document.getElementById('intensidadeSol').value);
+
+      document.getElementById('valorTransp').textContent = transp;
+      document.getElementById('valorSol').textContent = intensidade;
+
+      // Cálculo simplificado de temperatura
+      const luminosidade = getLuminosidade(cor); // 0 = preto, 1 = branco
+      const absorcao = 1 - luminosidade;
+      const efeitoEstufa = (transp / 100) * 0.75;
+      const temp = 17 + (absorcao * intensidade * 0.28) + (efeitoEstufa * 9) + (intensidade * 0.04);
+
+      document.getElementById('resultadoTemp').innerHTML = `
+        Temperatura estimada da água
+        <strong>${temp.toFixed(1)} °C</strong>
+      `;
+
+      desenharPiscina(cor, transp, intensidade);
+    }
+
+    function getLuminosidade(hex) {
+      const r = parseInt(hex.substr(1, 2), 16);
+      const g = parseInt(hex.substr(3, 2), 16);
+      const b = parseInt(hex.substr(5, 2), 16);
+      return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    }
+
+    function desenharPiscina(corFundo, transp, intensidade) {
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      // Céu
+      const gradCeu = ctx.createLinearGradient(0, 0, 0, 140);
+      gradCeu.addColorStop(0, '#4fc3f7');
+      gradCeu.addColorStop(1, '#81d4fa');
+      ctx.fillStyle = gradCeu;
+      ctx.fillRect(0, 0, w, 140);
+
+      // Sol
+      const solX = 480;
+      const solY = 55;
+      const raioSol = 28 + intensidade / 12;
+      ctx.beginPath();
+      ctx.arc(solX, solY, raioSol, 0, Math.PI * 2);
+      ctx.fillStyle = '#FFD54F';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(solX, solY, raioSol * 0.7, 0, Math.PI * 2);
+      ctx.fillStyle = '#FFECB3';
+      ctx.fill();
+
+      // Raios do sol
+      ctx.strokeStyle = `rgba(255, 213, 79, ${intensidade / 120})`;
+      ctx.lineWidth = 2.5;
+      for (let i = 0; i < 12; i++) {
+        const ang = (i / 12) * Math.PI * 2;
+        ctx.beginPath();
+        ctx.moveTo(solX + Math.cos(ang) * (raioSol + 5), solY + Math.sin(ang) * (raioSol + 5));
+        ctx.lineTo(solX + Math.cos(ang) * (raioSol + 22), solY + Math.sin(ang) * (raioSol + 22));
+        ctx.stroke();
+      }
+
+      // Cobertura
+      ctx.fillStyle = `rgba(180, 230, 255, ${transp / 100 * 0.45})`;
+      ctx.fillRect(50, 125, 460, 22);
+      ctx.strokeStyle = '#0277bd';
+      ctx.lineWidth = 3;
+      ctx.strokeRect(50, 125, 460, 22);
+
+      // Água
+      const gradAgua = ctx.createLinearGradient(0, 147, 0, 300);
+      gradAgua.addColorStop(0, '#4fc3f7');
+      gradAgua.addColorStop(1, '#0288d1');
+      ctx.fillStyle = gradAgua;
+      ctx.fillRect(60, 147, 440, 155);
+
+      // Fundo da piscina
+      ctx.fillStyle = corFundo;
+      ctx.fillRect(60, 280, 440, 35);
+
+      // Texto
+      ctx.fillStyle = '#01579b';
+      ctx.font = 'bold 13px Poppins, sans-serif';
+      ctx.fillText('Cobertura transparente', 190, 140);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '12px Poppins, sans-serif';
+      ctx.fillText('Água', 255, 220);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText('Fundo', 255, 302);
+    }
+
+    // Inicializa o simulador
+    atualizarSimulador();
+  </script>
+  
+  <!-- ==================== VLibras ==================== -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+  <!-- Seu JavaScript (se estiver separado) -->
+  <script src="script.js"></script>
+
+</body>
+</html>
